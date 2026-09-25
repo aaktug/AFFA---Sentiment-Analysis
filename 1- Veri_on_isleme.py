@@ -64,7 +64,7 @@ def preprocess_comments(df, text_column='Comment', label_column='Sentiment'):
     return df.reset_index(drop=True)
 
 # CSV dosyasını oku
-df = pd.read_csv(r"C:\Users\aaktug\Desktop\DuyguAnalizi\1_orjinalVeri.csv")
+df = pd.read_csv(r"C:\.....\1_orjinalVeri.csv")
 
 # Ön işleme işlemini yap
 df_clean = preprocess_comments(df)
