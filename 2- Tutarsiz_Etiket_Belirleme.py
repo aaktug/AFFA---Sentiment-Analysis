@@ -48,6 +48,6 @@ df["Confidence"] = confidences
 df_cleaned = df[df["Sentiment"] == df["Predicted_Label"]]
 
 #Temizlenmiş veriyi kaydet
-df_clean.to_csv(r"C:\Users\aaktug\Desktop\DuyguAnalizi\temizlenmis_etiketli_Veri.csv", index=False)
+df_clean.to_csv(r"C:\......\temizlenmis_etiketli_Veri.csv", index=False)
 
 print("Temizlenmiş veri başarıyla kaydedildi: temizlenmis_etiketli_veri.csv")
