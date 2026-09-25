@@ -11,8 +11,8 @@ from sklearn.metrics import precision_recall_curve, average_precision_score
 
 # -----------------Veriyi yükle
 
-X = np.load(r"C:\Users\aaktug\Desktop\eskiler\DuyguAnalizi\eski_X_cnn_fasttext.npy")   # (N, 30, 300), PAD=0
-y = np.load(r"C:\Users\aaktug\Desktop\eskiler\DuyguAnalizi\eski_y_cnn.npy").astype(int)
+X = np.load(r"C:\.....\X_cnn_fasttext.npy")   # (N, 30, 300), PAD=0
+y = np.load(r"C:\....\y_cnn.npy").astype(int)
 print("X shape:", X.shape)
 print("y shape:", y.shape, "unique labels:", np.unique(y))
 timesteps = X.shape[1]   # 30
@@ -37,7 +37,7 @@ print("class_weight:", class_weight)
 class Attention(layers.Layer):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.supports_masking = True #masking bildirilir, paddingler attentıonı etkilemez
+        self.supports_masking = True 
 
     def build(self, input_shape):
         self.W = self.add_weight(
@@ -129,7 +129,6 @@ def AFFA_enc1_lstm3_enc2_lstm3att(timesteps, features, num_classes):
     F64  = layers.Add(name="fusion_F_64")([V1_w, V2_w])   # (B,64)
 
     # 128 projeksiyon + sınıflandırma (aynı)
-    #128 olması sınıflandırıcıdan önce daha ifade gücü yüksek bir temsil alanı sağlamaktadır.
     #64 temsil öğrenme , 128 karar verme gücü
     F128 = layers.Dense(128, activation="relu", name="fusion_projection_128")(F64)
     F128 = layers.Dropout(0.3, name="dropout_after_proj")(F128)
@@ -155,7 +154,7 @@ callbacks = [
 
 history = model.fit(
     X_train, y_train_cat,
-    validation_split=0.1,   # train'in %10'u validation 
+    validation_split=0.1,   
     epochs=150,
     batch_size=128,
     class_weight=class_weight,
