@@ -73,5 +73,5 @@ df_clean = preprocess_comments(df)
 df_clean = df_clean.drop(columns=['Comment'])
 
 # Temizlenmiş veriyi kaydet
-df_clean.to_csv(r"C:\Users\aaktug\Desktop\DuyguAnalizi\1_ilk_temizlenen.csv", index=False)
+df_clean.to_csv(r"C:\....\ilk_temizlenen.csv", index=False)
 print("Sonuç CSV dosyaya kaydedildi.")
