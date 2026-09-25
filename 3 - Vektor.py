@@ -6,14 +6,14 @@ from tqdm import tqdm
 DTYPE = np.float32        
 embedding_dim = 300
 max_len = 30 #max 30 kelime #--30x300
-df = pd.read_csv(r"C:\Users\aaktug\Desktop\eskiler\DuyguAnalizi\temizlenmis_etiketli_Veri.csv")
+df = pd.read_csv(r"C:\...\temizlenmis_etiketli_Veri.csv")
 texts  = df["Cleaned_Comment"].astype(str).tolist()
 labels = df["Sentiment"].astype(int).tolist()
 
 #------FastText vektörlerini yükle
-embedding_path = r"C:\Users\aaktug\Desktop\eskiler\DuyguAnalizi\cc.en.300.vec"
+embedding_path = r"C:\.......\cc.en.300.vec"
 ft_model = KeyedVectors.load_word2vec_format(embedding_path, binary=False)
-print("Sequence-based FastText vektör işlemi----BAŞLADI!!!!!") 
+print("Sequence-based FastText vektör işlemi BAŞLADI!!!!!") 
 
 # --------- Sequence-based vektörleme (float32)
 def vectorize_sequence(text, model, max_len=max_len, dim=embedding_dim, dtype=DTYPE):
@@ -21,7 +21,7 @@ def vectorize_sequence(text, model, max_len=max_len, dim=embedding_dim, dtype=DT
     arr = np.zeros((max_len, dim), dtype=dtype)  # PAD = 0.0 (float32)
     for i, tok in enumerate(tokens[:max_len]): #en fazla 30 token olabilir
         if tok in model:
-            # gensim vektörü zaten float32 olur; garantiye alıyoruz
+          
             arr[i] = np.asarray(model[tok], dtype=dtype)
     return arr
 N = len(texts)
@@ -31,8 +31,8 @@ for i, t in enumerate(tqdm(texts)):
 y = np.asarray(labels, dtype=np.int64)
 
 # -------- Kaydet
-np.save(r"C:\Users\aaktug\Desktop\eskiler\DuyguAnalizi\eski_X_cnn_fasttext.npy", X)
-np.save(r"C:\Users\aaktug\Desktop\eskiler\DuyguAnalizi\eski_y_cnn.npy", y)
+np.save(r"C:\....\X_cnn_fasttext.npy", X)
+np.save(r"C:\......\_y_cnn.npy", y)
 
 print("Sequence-based FastText vektörleme tamamlandı. X shape:", X.shape, "| dtype:", X.dtype)
 print(np.isnan(X).sum())  # NaN var mı?
